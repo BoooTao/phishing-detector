@@ -5,6 +5,20 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import re
 from urllib.parse import urlparse
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+
+FEATURE_COLS = [
+    "url_length", "domain_length", "num_dots", "num_hyphens", "num_digits",
+    "num_special_chars", "has_ip", "has_at_symbol", "is_https",
+    "num_subdomains", "path_depth", "has_shortener", "has_suspicious_word",
+]
 
 
 SUSPICIOUS_WORDS = ["login", "verify", "secure", "account", "update", "confirm", "bank", "signin"]
