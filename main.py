@@ -11,6 +11,7 @@ import math
 from collections import Counter
 import requests
 
+#feature list for model
 FEATURE_COLS = [
     "url_length", "domain_length", "num_dots", "num_hyphens", "num_digits",
     "num_special_chars", "has_ip", "has_at_symbol", "is_https",
@@ -22,12 +23,13 @@ FEATURE_COLS = [
 SUSPICIOUS_WORDS = ["login", "verify", "secure", "account", "update", "confirm", "bank", "signin"]
 SHORTENERS = ["bit.ly", "tinyurl.com", "t.co", "goo.gl", "ow.ly"]
 WP_PATHS = ["wp-content", "wp-admin", "wp-includes"]
+#prob lots of false positives
 
-
+#typosquat list
 BRANDS = ["paypal", "amazon", "apple", "google", "microsoft", "facebook",
           "netflix", "bankofamerica", "wellsfargo", "chase", "instagram"]
 
-
+#since www exists
 def get_domain_label(domain):
     parts = domain.split(".")
     return parts[-2] if len(parts) >= 2 else domain
@@ -50,7 +52,7 @@ def levenshtein(a, b):
         previous_row = current_row
     return previous_row[-1]
 
-#random keyboard mash
+#random keyboard mash, malware primarily basically
 def entropy(s):
     if not s:
         return 0.0
