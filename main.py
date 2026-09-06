@@ -84,7 +84,7 @@ def main():
     plt.ylabel("standard deviations from average")
     plt.tight_layout()
     plt.savefig("feature_comparison_normalized.png")
-    plt.show()
+    #plt.show()
 
     #actual classifying
 
