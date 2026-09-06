@@ -108,9 +108,9 @@ def main():
 
         model.fit(X_train, y_train)
         predictions = model.predict(X_test)
-        acc = model.score(X_test, y_test)
-        print(f"random forest: accuracy = {acc:.4f}")
-        print(classification_report(y_test, predictions))
+        report = classification_report(y_test, predictions, output_dict=True)
+        print(f"weight={weight}: phishing recall={report['phishing']['recall']:.3f}, "
+              f"precision={report['phishing']['precision']:.3f}")
 
     # end
 
