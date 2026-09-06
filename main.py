@@ -43,6 +43,11 @@ def levenshtein(a, b):
         previous_row = current_row
     return previous_row[-1]
 
+
+def entropy(url):
+
+
+
 def extract(url):
     if not isinstance(url, str):
         url = ""
