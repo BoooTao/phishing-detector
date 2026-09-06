@@ -101,8 +101,8 @@ def main():
     X_test = scaler.transform(X_test)
 
 
-    models = RandomForestClassifier(random_state=42, n_jobs=-1,
-                                         class_weight={"normal": 1, "phishing": 3, "malware": 1}),
+    model = RandomForestClassifier(random_state=42, n_jobs=-1,
+                                         class_weight={"normal": 1, "phishing": 3, "malware": 1})
 
     for name, model in models.items():
         model.fit(X_train, y_train)
