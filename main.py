@@ -71,7 +71,7 @@ def extract(url):
         "has_shortener": any(s in domain for s in SHORTENERS),
         "has_suspicious_word": any(w in url.lower() for w in SUSPICIOUS_WORDS),
         "has_wp_path": any(p in path.lower() for p in WP_PATHS),
-        "has_brand_typosquat": 1 <= brand_dist <= 2,
+        "brand_edit_dist": brand_dist,
     }
 
 
