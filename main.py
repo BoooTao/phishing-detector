@@ -108,7 +108,6 @@ def main():
         print(f"weight={weight}: phishing recall={report['phishing']['recall']:.3f}, "
               f"precision={report['phishing']['precision']:.3f}")
 
-    # end
 
 
     print("fin")
