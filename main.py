@@ -104,7 +104,8 @@ def main():
     model = RandomForestClassifier(random_state=42, n_jobs=-1,
                                          class_weight={"normal": 1, "phishing": 3, "malware": 1})
 
-    for name, model in models.items():
+    for weight in [3,5,8,12]:
+
         model.fit(X_train, y_train)
         predictions = model.predict(X_test)
         acc = model.score(X_test, y_test)
