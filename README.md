@@ -67,3 +67,13 @@ phishing-detector/
 ├── .venv/                                 # gitignored
 └── README.md
 ```
+
+## some issues
+- Training data is a few years old, live validation currently checks phishing recall only, not precision, against live known phishing links
+- no homograph attack stuff since false positives and too little appeared in databases to be worth it for now
+- maybe a whois lookup after everything is wrapped up into a nice frontend webapp, not really useful for now though would greately increase detection rates of homograph and phishing links i believe
+
+## stuff that still needs to be implemented
+
+- Save the trained model and scaler to disk (`joblib`) for instant single-URL predictions instead of retraining every run
+- website for it
