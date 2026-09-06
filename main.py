@@ -106,6 +106,7 @@ def main():
 
     for name, model in models.items():
         model.fit(X_train, y_train)
+        predictions = model.predict(X_test)
         acc = model.score(X_test, y_test)
         print(f"{name}: accuracy = {acc:.4f}")
 
