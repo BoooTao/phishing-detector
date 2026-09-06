@@ -57,7 +57,7 @@ def entropy(s):
     counts = Counter(s)
     length = len(s)
 
-    return -sum((c/length ) * math.logic(c/length) for c in counts.values())
+    return -sum((c/length ) * math.log2(c/length) for c in counts.values())
 
 
 def extract(url):
