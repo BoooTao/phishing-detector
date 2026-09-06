@@ -5,7 +5,6 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import re
 from urllib.parse import urlparse
-
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report
 import math
@@ -26,6 +25,7 @@ WP_PATHS = ["wp-content", "wp-admin", "wp-includes"]
 BRANDS = ["paypal", "amazon", "apple", "google", "microsoft", "facebook",
           "netflix", "bankofamerica", "wellsfargo", "chase", "instagram"]
 
+#amount of change needed to get to a diff string, for typosquat.
 def levenshtein(a, b):
     if len(a) < len(b):
         return levenshtein(b, a)
@@ -43,9 +43,14 @@ def levenshtein(a, b):
         previous_row = current_row
     return previous_row[-1]
 
+#random keyboard mash
+def entropy(s):
+    if not s:
+        return 0.0
+    counts = Counter(s)
+    length = len(s)
 
-def entropy(url):
-
+    return -sum((c/length ) * math.logic(c/length) for c in counts.values())
 
 
 def extract(url):
