@@ -132,7 +132,7 @@ def main():
     model.fit(X_train, y_train)
     predictions = model.predict(X_test)
     #report = classification_report(y_test, predictions, output_dict=True)
-
+    print(f"start of report")
     print(classification_report(y_test, predictions))
 
 
