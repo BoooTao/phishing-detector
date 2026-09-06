@@ -18,6 +18,28 @@ FEATURE_COLS = [
 
 SUSPICIOUS_WORDS = ["login", "verify", "secure", "account", "update", "confirm", "bank", "signin"]
 SHORTENERS = ["bit.ly", "tinyurl.com", "t.co", "goo.gl", "ow.ly"]
+WP_PATHS = ["wp-content", "wp-admin", "wp-includes"]
+
+
+BRANDS = ["paypal", "amazon", "apple", "google", "microsoft", "facebook",
+          "netflix", "bankofamerica", "wellsfargo", "chase", "instagram"]
+
+def levenshtein(a, b):
+    if len(a) < len(b):
+        return levenshtein(b, a)
+    if len(b) == 0:
+        return len(a)
+    previous_row = list(range(len(b) + 1))
+    for i, ca in enumerate(a):
+        current_row = [i + 1]
+        for j, cb in enumerate(b):
+            current_row.append(min(
+                previous_row[j + 1] + 1,        # deletion
+                current_row[j] + 1,             # insertion
+                previous_row[j] + (ca != cb),   # substitution
+            ))
+        previous_row = current_row
+    return previous_row[-1]
 
 def extract(url):
     if not isinstance(url, str):
