@@ -110,11 +110,6 @@ def main():
 
     # end
 
-    ConfusionMatrixDisplay.from_estimator(model, X_test, y_test)
-    plt.title("random forest stuff")
-    plt.tight_layout()
-    plt.savefig("matrix.png")
-    plt.show()
 
     print("fin")
 
