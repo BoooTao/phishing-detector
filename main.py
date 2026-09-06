@@ -150,6 +150,9 @@ def main():
     model = RandomForestClassifier(random_state=42, n_jobs=-1,
                                    class_weight={"normal": 1, "phishing": 12, "malware": 1})
     model.fit(X_train, y_train)
+    importances = pd.Series(model.feature_importances_, index=FEATURE_COLS)
+    print(f"feature importances")
+    print(importances.sort_values(ascending=False).to_string())
     predictions = model.predict(X_test)
     #report = classification_report(y_test, predictions, output_dict=True)
     print(f"start of report")
