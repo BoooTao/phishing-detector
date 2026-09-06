@@ -26,6 +26,11 @@ WP_PATHS = ["wp-content", "wp-admin", "wp-includes"]
 BRANDS = ["paypal", "amazon", "apple", "google", "microsoft", "facebook",
           "netflix", "bankofamerica", "wellsfargo", "chase", "instagram"]
 
+
+def get_domain_label(domain):
+    parts = domain.split(".")
+    return parts[-2] if len(parts) >= 2 else domain
+
 #amount of change needed to get to a diff string, for typosquat.
 def levenshtein(a, b):
     if len(a) < len(b):
