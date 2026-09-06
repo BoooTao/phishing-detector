@@ -100,6 +100,11 @@ def main():
         X, y, test_size=0.2, random_state=42, stratify=y
     )
 
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+
+
     models = {
         "logistic_regression": LogisticRegression(max_iter = 1000),
         "decision_tree": DecisionTreeClassifier(random_state = 42),
