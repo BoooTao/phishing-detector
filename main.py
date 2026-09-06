@@ -101,11 +101,8 @@ def main():
     X_test = scaler.transform(X_test)
 
 
-    models = {
-        "logistic_regression": LogisticRegression(max_iter = 3000),
-        "decision_tree": DecisionTreeClassifier(random_state = 42),
-        "random_forest": RandomForestClassifier(random_state = 42, n_jobs = -1),
-    }
+    models = RandomForestClassifier(random_state=42, n_jobs=-1,
+                                         class_weight={"normal": 1, "phishing": 3, "malware": 1}),
 
     for name, model in models.items():
         model.fit(X_train, y_train)
