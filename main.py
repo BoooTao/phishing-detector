@@ -91,6 +91,7 @@ def extract(url):
         "has_suspicious_word": any(w in url.lower() for w in SUSPICIOUS_WORDS),
         "has_wp_path": any(p in path.lower() for p in WP_PATHS),
         "brand_edit_dist": brand_dist,
+        "domain_entropy": domain_entropy,
     }
 
 
