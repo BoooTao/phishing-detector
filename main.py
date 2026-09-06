@@ -5,8 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import re
 from urllib.parse import urlparse
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
+
 from sklearn.preprocessing import StandardScaler
 
 
