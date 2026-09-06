@@ -95,6 +95,10 @@ def extract(url):
         "domain_entropy": domain_entropy,
     }
 
+def fetch_openphish():
+    resp = requests.get("https://openphish.com/feed.txt")
+    resp.raise_for_status()
+    return [line.strip() for line in resp.text.splitlines() if line.strip()]
 
 def main():
     df = pd.read_csv("data/malicious_phish.csv")
