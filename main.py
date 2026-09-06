@@ -73,6 +73,7 @@ def extract(url):
 
     domain_label = get_domain_label(domain)
     brand_dist = min((levenshtein(domain_label, b) for b in BRANDS), default=99)
+    domain_entropy = entropy(domain_label)
 
     return {
         "url_length": len(url),
