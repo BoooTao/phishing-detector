@@ -99,7 +99,7 @@ def main():
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
-    for weight in [3, 5, 8, 12]:
+    for weight in [15,20,30,50]:
         model = RandomForestClassifier(random_state=42, n_jobs=-1,
                                        class_weight={"normal": 1, "phishing": weight, "malware": 1})
         model.fit(X_train, y_train)
