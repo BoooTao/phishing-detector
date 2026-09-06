@@ -100,12 +100,9 @@ def main():
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
-
-    model = RandomForestClassifier(random_state=42, n_jobs=-1,
-                                         class_weight={"normal": 1, "phishing": 3, "malware": 1})
-
-    for weight in [3,5,8,12]:
-
+    for weight in [3, 5, 8, 12]:
+        model = RandomForestClassifier(random_state=42, n_jobs=-1,
+                                       class_weight={"normal": 1, "phishing": weight, "malware": 1})
         model.fit(X_train, y_train)
         predictions = model.predict(X_test)
         report = classification_report(y_test, predictions, output_dict=True)
