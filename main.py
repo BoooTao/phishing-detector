@@ -159,6 +159,16 @@ def main():
     print(classification_report(y_test, predictions))
 
 
+    # opehphish check
+    live_urls = fetch_openphish()
+    live_features = pd.DataFrame([extract(u) for u in live_urls])
+    X_live = live_features[FEATURE_COLS].astype(float)
+    X_live_scaled = scaler.transform(X_live)
+
+    live_predictions = model.predict(X_live_scaled)
+    caught = (live_predictions == "phishing").sum()
+    print(f"live OpenPhish recall: {caught}/{len(live_predictions)} = {caught / len(live_predictions):.3f}")
+   # end of check
 
     print("fin")
 
