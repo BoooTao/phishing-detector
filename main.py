@@ -9,10 +9,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import StandardScaler
 
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
-
 
 FEATURE_COLS = [
     "url_length", "domain_length", "num_dots", "num_hyphens", "num_digits",
@@ -106,9 +102,9 @@ def main():
 
 
     models = {
-        "logistic_regression": LogisticRegression(max_iter = 1000),
+        "logistic_regression": LogisticRegression(max_iter = 3000),
         "decision_tree": DecisionTreeClassifier(random_state = 42),
-        "random_forest": RandomForestClassifier(random_state = 42),
+        "random_forest": RandomForestClassifier(random_state = 42, n_jobs = -1),
     }
 
     for name, model in models.items():
