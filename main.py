@@ -71,7 +71,7 @@ def extract(url):
         domain = ""
         path = ""
 
-    domain_label = domain.split(".")[0] if domain else ""
+    domain_label = get_domain_label(domain)
     brand_dist = min((levenshtein(domain_label, b) for b in BRANDS), default=99)
 
     return {
