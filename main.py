@@ -12,7 +12,7 @@ from sklearn.metrics import classification_report
 FEATURE_COLS = [
     "url_length", "domain_length", "num_dots", "num_hyphens", "num_digits",
     "num_special_chars", "has_ip", "has_at_symbol", "is_https",
-    "num_subdomains", "path_depth", "has_shortener", "has_suspicious_word", "has_wp_path", "has_brand_typosquat",
+    "num_subdomains", "path_depth", "has_shortener", "has_suspicious_word", "has_wp_path", "brand_edit_dist",
 ]
 
 
