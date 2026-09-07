@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import re
 from urllib.parse import urlparse
-
+import tldextract
 from sklearn.metrics import classification_report
 import math
 from collections import Counter
