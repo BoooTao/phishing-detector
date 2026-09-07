@@ -32,8 +32,8 @@ BRANDS = ["paypal", "amazon", "apple", "google", "microsoft", "facebook",
 
 #since www exists
 def get_domain_label(domain):
-    parts = domain.split(".")
-    return parts[-2] if len(parts) >= 2 else domain
+    extracted = tldextract.extract(domain)
+    return extracted.domain if extracted.domain else domain
 
 #amount of change needed to get to a diff string, for typosquat.
 def levenshtein(a, b):
