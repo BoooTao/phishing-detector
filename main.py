@@ -126,6 +126,10 @@ def main():
 
     print(df.head())
 
+    #sub check
+    lang_mask = df["url"].apply(has_lang_subdomain)
+    print(df[lang_mask]["label"].value_counts())
+
     # explore whtv
     print(df["label"].value_counts())
     print(df.isna().sum())
