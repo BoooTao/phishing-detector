@@ -12,6 +12,9 @@ from collections import Counter
 import requests
 import joblib
 
+
+
+
 #feature list for model
 FEATURE_COLS = [
     "url_length", "domain_length", "num_dots", "num_hyphens", "num_digits",
