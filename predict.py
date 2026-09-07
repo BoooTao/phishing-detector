@@ -20,8 +20,10 @@ def main():
     url = sys.argv[1] if len(sys.argv) > 1 else input ("Enter URL: ")
     model = joblib.load(MODEL_PATH)
 
-    prediction, confidence = predict(url, model)
-    print(f"{url}\n -> {prediction} -> ({confidence * 100:.1f}% confidence")
+    prediction, confidence, breakdown = predict(url, model)
+    print(f"{url}\n -> {prediction} ({confidence * 100:.1f}% confidence)")
+    for cls, p in sorted(breakdown.items(), key=lambda x: -x[1]):
+        print(f"    {cls}: {p * 100:.1f}%")
 
 
 if __name__ == "__main__":
