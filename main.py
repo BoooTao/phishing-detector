@@ -87,7 +87,7 @@ def extract(url):
         "num_special_chars": sum(url.count(c) for c in "@%=&?"),
         "has_ip": bool(re.match(r"^\d{1,3}(\.\d{1,3}){3}$", domain)),
         "has_at_symbol": "@" in url,
-        "is_https": url.startswith("https"),
+        "is_https": url.startswith("https://"),
         "num_subdomains": max(domain.count(".") - 1, 0),
         "path_depth": path.count("/"),
         "has_shortener": any(s in domain for s in SHORTENERS),
