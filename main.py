@@ -34,6 +34,7 @@ BRANDS = ["paypal", "amazon", "apple", "google", "microsoft", "facebook",
           "netflix", "bankofamerica", "wellsfargo", "chase", "instagram"]
 
 #since www exists
+
 def get_domain_label(domain):
     extracted = tldextract.extract(domain)
     return extracted.domain if extracted.domain else domain
