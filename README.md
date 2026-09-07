@@ -18,7 +18,7 @@ A ml project that classifies URLs as **phishing**, **malware**, or **normal** ba
 
 ## Results
 
-On held-out test data (20% split, stratified by class):
+(20% split, stratified by class):
 
 | Class    | Precision | Recall | F1   |
 |----------|-----------|--------|------|
@@ -28,8 +28,7 @@ On held-out test data (20% split, stratified by class):
 
 Overall accuracy: **0.94**
 
-**Live validation**: 89.7% recall (269/300) against a sample of currently-active phishing URLs from the OpenPhish feed — confirms the model generalizes beyond its training data, which is several years old.
-
+**Live validation**: 89.7% recall (269/300) against a sample of currently-active phishing URLs from the OpenPhish feed so probably a good thing
 ## Setup
 
 ```bash
@@ -77,3 +76,4 @@ phishing-detector/
 
 - Save the trained model and scaler to disk (`joblib`) for instant single-URL predictions instead of retraining every run
 - website for it
+- MORE ADVERSARIAL TESTING!!! 
