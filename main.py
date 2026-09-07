@@ -5,11 +5,12 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import re
 from urllib.parse import urlparse
-from sklearn.preprocessing import StandardScaler
+
 from sklearn.metrics import classification_report
 import math
 from collections import Counter
 import requests
+import joblib
 
 #feature list for model
 FEATURE_COLS = [
@@ -132,13 +133,6 @@ def main():
     class_means = df.groupby("label")[feature_cols].mean()
     print(class_means.to_string())
 
-    normalized = (class_means - class_means.mean()) / class_means.std()
-    normalized.plot(kind="bar", figsize=(10, 6))
-    plt.title("Relative feature differences by class (z-scored)")
-    plt.ylabel("standard deviations from average")
-    plt.tight_layout()
-    plt.savefig("feature_comparison_normalized.png")
-    #plt.show()
 
     #actual classifying
 
@@ -149,9 +143,7 @@ def main():
         X, y, test_size=0.2, random_state=42, stratify=y
     )
 
-    scaler = StandardScaler()
-    X_train = scaler.fit_transform(X_train)
-    X_test = scaler.transform(X_test)
+
 
 
     model = RandomForestClassifier(random_state=42, n_jobs=-1,
@@ -170,12 +162,15 @@ def main():
     live_urls = fetch_openphish()
     live_features = pd.DataFrame([extract(u) for u in live_urls])
     X_live = live_features[FEATURE_COLS].astype(float)
-    X_live_scaled = scaler.transform(X_live)
 
-    live_predictions = model.predict(X_live_scaled)
+
+    live_predictions = model.predict(X_live)
     caught = (live_predictions == "phishing").sum()
     print(f"live OpenPhish recall: {caught}/{len(live_predictions)} = {caught / len(live_predictions):.3f}")
    # end of check
+
+    joblib.dump(model, "phishing_rf_model.joblib")
+    print("random forest model exported successfully")
 
     print("fin")
 
