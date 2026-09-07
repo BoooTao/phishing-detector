@@ -191,8 +191,8 @@ def main():
     print(f"live OpenPhish recall: {caught}/{len(live_predictions)} = {caught / len(live_predictions):.3f}")
    # end of check
 
-    joblib.dump(model, "models/phishing_rf_model.joblib", compress=3)
-    print("random forest model exported successfully")
+    #joblib.dump(model, "models/phishing_rf_model.joblib", compress=3)
+    #print("random forest model exported successfully")
 
     print("fin")
 
