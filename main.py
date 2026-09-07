@@ -107,6 +107,17 @@ def fetch_openphish():
     resp.raise_for_status()
     return [line.strip() for line in resp.text.splitlines() if line.strip()]
 
+
+def has_lang_subdomain(url):
+    try:
+        domain = urlparse(url if "://" in url else "http://" + url).netloc
+    except ValueError:
+        return False
+    labels = domain.split(".")
+    lang_codes = {"en", "de", "fr", "es", "it", "pt", "ja", "zh"}
+    return len(labels) > 2 and any(label in lang_codes for label in labels[:-2])
+
+
 def main():
     df = pd.read_csv("data/malicious_phish.csv")
     print(df.columns)
