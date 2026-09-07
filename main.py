@@ -147,7 +147,10 @@ def main():
 
 
     model = RandomForestClassifier(random_state=42, n_jobs=-1,
-                                   class_weight={"normal": 1, "phishing": 12, "malware": 1})
+                                   class_weight={"normal": 1, "phishing": 12, "malware": 1},
+
+                                   )
+
     model.fit(X_train, y_train)
     importances = pd.Series(model.feature_importances_, index=FEATURE_COLS)
     print(f"feature importances")
@@ -169,7 +172,7 @@ def main():
     print(f"live OpenPhish recall: {caught}/{len(live_predictions)} = {caught / len(live_predictions):.3f}")
    # end of check
 
-    joblib.dump(model, "phishing_rf_model.joblib")
+    joblib.dump(model, "models/phishing_rf_model.joblib", compress=3)
     print("random forest model exported successfully")
 
     print("fin")
