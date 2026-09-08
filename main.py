@@ -128,6 +128,13 @@ def has_lang_subdomain(url):
 
 def main():
     df = pd.read_csv("data/malicious_phish.csv")
+
+    synthetic_rows = pd.DataFrame({
+        "url": [f"https://{d}" for d in LEGIT_DOMAINS] * 20,
+        "type": "benign",
+    })
+    df = pd.concat([df, synthetic_rows], ignore_index=True)
+
     print(df.columns)
     print(df.head())
     print(df["type"].value_counts())
