@@ -21,9 +21,6 @@ def main():
 
     prediction, confidence = predict(url, model)
     print(f"{url}\n -> {prediction} ({confidence * 100:.1f}% confidence)")
-    print(extract("youtube.com"))
-    print(extract("https://youtube.com"))
-
 
 
 if __name__ == "__main__":
