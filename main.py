@@ -22,6 +22,16 @@ FEATURE_COLS = [
 ]
 
 
+LEGIT_DOMAINS = [
+    "google.com", "youtube.com", "facebook.com", "amazon.com", "wikipedia.org",
+    "twitter.com", "instagram.com", "linkedin.com", "reddit.com", "netflix.com",
+    "microsoft.com", "apple.com", "github.com", "stackoverflow.com", "yahoo.com",
+    "bing.com", "twitch.tv", "spotify.com", "zoom.us", "dropbox.com",
+    "adobe.com", "salesforce.com", "paypal.com", "ebay.com", "airbnb.com",
+    "uber.com", "pinterest.com", "wordpress.com", "shopify.com", "cnn.com",
+    "bbc.com", "nytimes.com", "espn.com", "imdb.com", "walmart.com",
+]
+
 SUSPICIOUS_WORDS = ["login", "verify", "secure", "account", "update", "confirm", "bank", "signin"]
 SHORTENERS = ["bit.ly", "tinyurl.com", "t.co", "goo.gl", "ow.ly"]
 WP_PATHS = ["wp-content", "wp-admin", "wp-includes"]
