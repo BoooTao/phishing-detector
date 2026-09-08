@@ -79,8 +79,11 @@ def extract(url):
     if not isinstance(url, str):
         url = ""
 
+    if url and "://" not in url:
+        url = "http://" + url
+
     try:
-        parsed = urlparse(url if "://" in url else "http://" + url)
+        parsed = urlparse(url)
         domain = parsed.netloc
         path = parsed.path
     except ValueError:
@@ -130,9 +133,14 @@ def main():
     df = pd.read_csv("data/malicious_phish.csv")
 
     synthetic_rows = pd.DataFrame({
-        "url": [f"https://{d}" for d in LEGIT_DOMAINS] * 20,
+        "url": (
+                       [d for d in LEGIT_DOMAINS] +  # bare: "youtube.com"
+                       [f"http://{d}" for d in LEGIT_DOMAINS] +  # explicit http
+                       [f"https://{d}" for d in LEGIT_DOMAINS]  # explicit https
+               ) * 40,
         "type": "benign",
     })
+
     df = pd.concat([df, synthetic_rows], ignore_index=True)
 
     print(df.columns)
@@ -178,10 +186,8 @@ def main():
     )
 
 
-
-
     model = RandomForestClassifier(random_state=42, n_jobs=-1,
-                                   class_weight={"normal": 1, "phishing": 12, "malware": 1},
+                                   class_weight={"normal": 1, "phishing": 3, "malware": 1},
 
                                    )
 
@@ -190,6 +196,8 @@ def main():
     print(f"feature importances")
     print(importances.sort_values(ascending=False).to_string())
     predictions = model.predict(X_test)
+
+
     #report = classification_report(y_test, predictions, output_dict=True)
     print(f"start of report")
     print(classification_report(y_test, predictions))
