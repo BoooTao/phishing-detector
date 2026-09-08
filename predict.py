@@ -22,8 +22,6 @@ def main():
 
     prediction, confidence, breakdown = predict(url, model)
     print(f"{url}\n -> {prediction} ({confidence * 100:.1f}% confidence)")
-    for cls, p in sorted(breakdown.items(), key=lambda x: -x[1]):
-        print(f"    {cls}: {p * 100:.1f}%")
 
 
 if __name__ == "__main__":
