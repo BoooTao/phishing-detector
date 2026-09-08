@@ -12,15 +12,14 @@ def predict(url, model):
     prediction = model.predict(row)[0]
     probs = model.predict_proba(row)[0]
     confidence = probs.max()
-    breakdown = dict(zip(model.classes_, probs))
-    return prediction, confidence, breakdown
+    return prediction, confidence
 
 
 def main():
     url = sys.argv[1] if len(sys.argv) > 1 else input ("Enter URL: ")
     model = joblib.load(MODEL_PATH)
 
-    prediction, confidence, breakdown = predict(url, model)
+    prediction, confidence = predict(url, model)
     print(f"{url}\n -> {prediction} ({confidence * 100:.1f}% confidence)")
 
 
