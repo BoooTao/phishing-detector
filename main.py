@@ -212,6 +212,15 @@ def main():
     live_predictions = model.predict(X_live)
     caught = (live_predictions == "phishing").sum()
     print(f"live OpenPhish recall: {caught}/{len(live_predictions)} = {caught / len(live_predictions):.3f}")
+
+    pt = pd.read_csv("./data/verified_online.csv")
+    pt_urls = pt["url"].dropna().to_list()
+    pt_features = pd.DataFrame([extract(u) for u in pt_urls])
+    X_pt = pt_features[FEATURE_COLS].astype(float)
+    live_predictions = model.predict(X_pt)
+    caught = (live_predictions == "phishing").sum()
+    print(f"live PT recall: {caught}/{len(live_predictions)} = {caught / len(live_predictions):.3f}")
+
    # end of check
 
     joblib.dump(model, "models/phishing_rf_model.joblib", compress=3)
